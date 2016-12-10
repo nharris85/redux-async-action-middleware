@@ -8,7 +8,7 @@ export default function middleware(helpers) {
     return ({dispatch, getState}) => next => action => {
         if (!isFSA(action)) {
             const thunk = typeof action === 'function' ?
-                action(dispatch, getState, helpers) :
+                action({...helpers, dispatch, getState}) :
                 isPromise(action) ?
                     action :
                     next(action);
@@ -30,7 +30,7 @@ export default function middleware(helpers) {
         next(loadingAction);
 
         const payloadAction = typeof payload === 'function' ?
-            payload(dispatch, getState, helpers) :
+            payload({...helpers, dispatch, getState}) :
             payload;
 
         if (!isPromise(payloadAction)) {
