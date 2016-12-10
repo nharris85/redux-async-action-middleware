@@ -23,9 +23,9 @@ export default function middleware(helpers) {
             return next(action);
         }
 
-        const loadingAction = {type: `${type}/LOAD`, meta: {...meta, loading: true, loaded: false}};
-        const okAction = {type: `${type}/SUCCESS`, meta: {...meta, loaded: true, loading: false}};
-        const errorAction = {type: `${type}/FAIL`, error: true, meta: {...meta, loading: false, loaded: false}};
+        const loadingAction = {type, meta: {...meta, loading: true, loaded: false}};
+        const okAction = {type, meta: {...meta, loaded: true, loading: false}};
+        const errorAction = {type, error: true, meta: {...meta, loading: false, loaded: false}};
 
         next(loadingAction);
 
