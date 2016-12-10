@@ -7,32 +7,37 @@ function isPromise(val) {
 export default function middleware(helpers) {
     return ({dispatch, getState}) => next => action => {
         if (!isFSA(action)) {
-            return isPromise(action) ?
-                action.then(dispatch) :
-                next(action);
+            const thunk = typeof action === 'function' ?
+                action(dispatch, getState, helpers) :
+                isPromise(action) ?
+                    action :
+                    next(action);
+            return isPromise(thunk) ?
+                thunk.then(dispatch) :
+                thunk;
         }
 
         const {type, payload, meta} = action;
 
         if (typeof payload !== 'function' && !isPromise(payload)) {
-            next(action);
+            return next(action);
         }
 
-        const loadingAction = {type, meta: {...meta, loading: true, loaded: false}};
-        const okAction = {type, meta: {...meta, loaded: true, loading: false}};
-        const errorAction = {type, error: true, meta: {...meta, loading: false, loaded: false}};
+        const loadingAction = {type: `${type}/LOAD`, meta: {...meta, loading: true, loaded: false}};
+        const okAction = {type: `${type}/SUCCESS`, meta: {...meta, loaded: true, loading: false}};
+        const errorAction = {type: `${type}/FAIL`, error: true, meta: {...meta, loading: false, loaded: false}};
 
         next(loadingAction);
 
-        const payloadAction = isPromise(payload) ?
-            payload :
-            payload({...helpers, dispatch, getState});
+        const payloadAction = typeof payload === 'function' ?
+            payload(dispatch, getState, helpers) :
+            payload;
 
         if (!isPromise(payloadAction)) {
-            return next(payloadAction);
+            return next({...okAction, payload: payloadAction});
         }
 
-        payloadAction.then(
+        return payloadAction.then(
             result => next({
                 ...okAction, payload: result
             }),
@@ -40,8 +45,8 @@ export default function middleware(helpers) {
                 ...errorAction, payload: err
             })
         ).catch(err => {
-            console.error('redux-async-actions MIDDLEWARE ERROR:', error);
-            next({...errorAction, payload: err});
+            console.error('redux-async-actions MIDDLEWARE ERROR:', err);
+            return next({...errorAction, payload: err});
         })
     }
 }
