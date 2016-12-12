@@ -1,26 +1,26 @@
-Redux Async Actions
+Redux Async Action Middleware
 ===================
 
-[![build status](https://img.shields.io/travis/nharris85/redux-async-actions/master.svg?style=flat-square)](https://travis-ci.org/nharris85/redux-async-actions)
-[![npm version](https://img.shields.io/npm/v/redux-async-actions.svg?style=flat-square)](https://www.npmjs.com/package/redux-async-actions)
-[![npm downloads](https://img.shields.io/npm/dm/redux-async-actions.svg?style=flat-square)](https://www.npmjs.com/package/redux-async-actions)
+[![build status](https://img.shields.io/travis/nharris85/redux-async-action-middleware/master.svg?style=flat-square)](https://travis-ci.org/nharris85/redux-async-action-middleware)
+[![npm version](https://img.shields.io/npm/v/redux-async-actions.svg?style=flat-square)](https://www.npmjs.com/packageredux-async-action-middleware)
+[![npm downloads](https://img.shields.io/npm/dm/redux-async-actions.svg?style=flat-square)](https://www.npmjs.com/package/redux-async-action-middleware)
 
 
 ## Install
 
 ```bash
-npm install --save redux-async-actions
+npm install --save redux-async-action-middleware
 ```
 
 CommonJS
 
 ```js
-var asyncMiddleware = require('redux-async-actions').default;
+var asyncMiddleware = require('redux-async-action-middleware').default;
 ```
 
 ES Modules
 ```js
-import asyncMiddleware from 'redux-async-actions';
+import asyncMiddleware from 'redux-async-action-middleware';
 ```
 
 ## Why Do I Need This?
@@ -49,7 +49,7 @@ Note how instead of three arguments it is now a single object that contains disp
 ```js
 import {createAction} from 'redux-actions';
 import { createStore, applyMiddleware } from 'redux';
-import asyncMiddleware from 'redux-async-actions';
+import asyncMiddleware from 'redux-async-action-middleware';
 import axios from 'axios';
 import rootReducer from './reducers';
 
