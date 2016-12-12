@@ -28,7 +28,7 @@ describe('async middleware', () => {
                 it('must run the given action function with dispatch and getState', done => {
                     const actionHandler = nextHandler();
 
-                    actionHandler((dispatch, getState) => {
+                    actionHandler(({dispatch, getState}) => {
                         chai.assert.strictEqual(dispatch, doDispatch);
                         chai.assert.strictEqual(getState, doGetState);
                         done();
@@ -87,10 +87,10 @@ describe('async middleware', () => {
                 const extraArg = {
                     lol: true
                 };
-                asyncMiddleware(extraArg)({
+                asyncMiddleware({extraArg})({
                     dispatch: doDispatch,
                     getState: doGetState,
-                })()((dispatch, getState, arg) => {
+                })()(({dispatch, getState, extraArg: arg}) => {
                     chai.assert.strictEqual(dispatch, doDispatch);
                     chai.assert.strictEqual(getState, doGetState);
                     chai.assert.strictEqual(arg, extraArg);
