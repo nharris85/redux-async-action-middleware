@@ -2,8 +2,8 @@ Redux Async Action Middleware
 ===================
 
 [![build status](https://img.shields.io/travis/nharris85/redux-async-action-middleware/master.svg?style=flat-square)](https://travis-ci.org/nharris85/redux-async-action-middleware)
-[![npm version](https://img.shields.io/npm/v/redux-async-actions.svg?style=flat-square)](https://www.npmjs.com/packageredux-async-action-middleware)
-[![npm downloads](https://img.shields.io/npm/dm/redux-async-actions.svg?style=flat-square)](https://www.npmjs.com/package/redux-async-action-middleware)
+[![npm version](https://img.shields.io/npm/v/redux-async-action-middleware.svg?style=flat-square)](https://www.npmjs.com/packageredux-async-action-middleware)
+[![npm downloads](https://img.shields.io/npm/dm/redux-async-action-middleware.svg?style=flat-square)](https://www.npmjs.com/package/redux-async-action-middleware)
 
 
 ## Install
