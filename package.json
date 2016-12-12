@@ -1,5 +1,5 @@
 {
-  "name": "redux-async-actions",
+  "name": "redux-async-action-middleware",
   "version": "0.1.0",
   "description": "Redux Async Middleware",
   "main": "lib/index.js",
