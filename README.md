@@ -47,7 +47,6 @@ Note how instead of three arguments it is now a single object that contains disp
 ## Async Actions
 
 ```js
-import {createAction} from 'redux-actions';
 import { createStore, applyMiddleware } from 'redux';
 import asyncMiddleware from 'redux-async-action-middleware';
 import axios from 'axios';
