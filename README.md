@@ -102,7 +102,7 @@ export class Foo extends Component {
     }
 
     render() {
-        const {foo: {loading, loaded, payload}} = this.props;
+        const {foo: {meta: {loading, loaded}, payload}} = this.props;
 
         return (
             <div>
